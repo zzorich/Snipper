@@ -8,9 +8,8 @@
 import SwiftUI
 
 @main
-@MainActor
 struct SnipperApp: App {
-    var gameModel = GameModel()
+    let gameModel = GameModelManager()
     var body: some Scene {
         WindowGroup {
             ContentView()

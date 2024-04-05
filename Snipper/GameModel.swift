@@ -11,58 +11,50 @@ import RealityKit
 import Spatial
 import RealityKitContent
 
-@MainActor
-@Observable
-final class GameModel {
-    enum State { case preparingScene, readyToStart, isPlaying, isPaused }
-    var gameState = State.preparingScene
-    var shootAnimationController: AnimationPlaybackController?
+struct GameEntities {
 
-    var gun: Entity!
-    var gunDefaultTransform: simd_float4x4 = .init()
-
-    func generateRandomLocationsForDrummers() {
-        for (index, drummer) in drummers.enumerated() {
-            drummer.position = .init(x: drummerLocation[index].0, y: drummerLocation[index].1, z: .random(in: -5 ... -3))
-        }
-    }
+    let scene: Entity
+    let gun: Entity
+    let gunParent: Entity
+    let planes: [Entity]
+    let headAnchor: Entity
 
     @MainActor
-    func loadGun() async {
-        gun = await BundleAssets.loadEntity(asset: BundleAssets.bullet)
-        assert(gun != nil)
-    }
+    init() async throws {
+        scene = Entity()
+        async let _gun = loadEntity(named: .gun)
+        async let _plane = loadEntity(named: .plane)
 
-    func attachGunToHead() {
-        cameraAnchor.addChild(gun)
-        gun.position = .init([0, 0, -0.5])
-        gun.transform.rotation = .init(angle: .pi, axis: .init([0, 1, 0]))
-//        gun.transform.rotation = .init(angle: .pi / 12, axis: .init([1, 0, 0])) *  gun.transform.rotation
-        gunDefaultTransform = gun.transform.matrix
-    }
+        let (gun, plane) = try await (_gun, _plane)
+        gunParent = Entity()
+        gunParent.addChild(gun)
+        self.gun = gun
 
+        headAnchor = AnchorEntity(.head)
+        headAnchor.addChild(gunParent)
+        scene.addChild(headAnchor)
 
-    func shoot() {
-        guard let gun else { return }
-        let distanceVec = simd_normalize(gun.transform.matrix * SIMD4<Float>([0, 0, -1, 0]))
-        var newTransform = Transform(matrix: gun.transform.matrix)
-        newTransform.translation += 5.0 * simd_float3([distanceVec.x, distanceVec.y, distanceVec.z])
-        let shootAnimationCurve = FromToByAnimation<Transform>(
-            name: "Shoot animation",
-            from: gun.transform,
-            to: newTransform,
-            duration: 3,
-            bindTarget: .transform
-        )
-
-        let shootAnimation = try! AnimationResource.generate(with: shootAnimationCurve)
-        shootAnimationController =  gun.playAnimation(shootAnimation, startsPaused: false)
-
-
-    }
-
-    func handleShootAnimationCompletion(event: AnimationEvents.PlaybackCompleted) {
-        gun.transform.matrix = gunDefaultTransform
+        let planeParent = Entity()
+        planeParent.addChild(plane)
+        var planes = [Entity]()
+        planes.append(plane)
+        for _ in 1..<maxNumberOfPlanes {
+            let copyedPlane = plane.clone(recursive: true)
+            let copyedPlaneParent = Entity()
+            copyedPlaneParent.addChild(copyedPlane)
+            scene.addChild(copyedPlaneParent)
+            planes.append(copyedPlane)
+        }
+        self.planes = planes
     }
 }
 
+extension String {
+    static let plane = "Plane.usdz"
+    static let gun = "DrumStick.usdz"
+    static let drummer = "Drummer.usdz"
+}
+
+private func loadEntity(named asset: String) async throws -> Entity {
+    try await Entity(named: asset, in: .realityKitContentBundle)
+}

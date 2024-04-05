@@ -9,15 +9,14 @@ import SwiftUI
 import RealityKit
 import RealityKitContent
 
-@MainActor
 struct ContentView: View {
 
-    @Environment(GameModel.self) private var gameModel
     @State private var showImmersiveSpace = false
     @State private var immersiveSpaceIsShown = false
 
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
+    @Environment(GameModelManager.self) private var gameManager
 
 
     var body: some View {
@@ -25,6 +24,7 @@ struct ContentView: View {
             if (!showImmersiveSpace) {
                 Button {
                     Task { @MainActor () -> Void in
+                        print("Button trigered")
                         await openImmersiveSpace(id: "Main")
                         showImmersiveSpace = true
 
@@ -35,7 +35,7 @@ struct ContentView: View {
                 .glassBackgroundEffect()
             } else {
                 Button("Shoot") {
-                    gameModel.shoot()
+                    gameManager.shoot()
                 }
             }
         }

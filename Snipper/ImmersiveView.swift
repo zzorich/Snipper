@@ -10,26 +10,23 @@ import RealityKit
 import RealityKitContent
 import Combine
 
-@MainActor
 struct ImmersiveView: View {
-    @Environment(GameModel.self) private var gameModel
-    @State private var shootSubscription: EventSubscription?
+
+    @Environment(GameModelManager.self) private var gameManager
+
     var body: some View {
         RealityView { content in
-            await loadDrummers(numberOfDrummers: 5)
-            await gameModel.loadGun()
-            gameModel.attachGunToHead()
-            gameModel.generateRandomLocationsForDrummers()
-
-            for drummer in drummers {
-                space.addChild(drummer)
+            do {
+                try await gameManager.loadResources()
+            } catch {
+                fatalError("Fail to load Resources")
             }
-            content.add(space)
-            content.add(cameraAnchor)
-            shootSubscription = content.subscribe(to: AnimationEvents.PlaybackCompleted.self) { event in
-                gameModel.handleShootAnimationCompletion(event: event)
-            }
-
+            content.add(gameManager.entities.scene)
+            gameManager.setupGeometries()
+            gameManager.playRecurrentPlanesAnimations()
+        }
+        .onTapGesture {
+            
         }
     }
 }

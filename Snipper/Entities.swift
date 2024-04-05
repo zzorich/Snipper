@@ -15,7 +15,8 @@ let space = Entity()
 // hand anchor used to track user hand location
 let cameraAnchor = AnchorEntity(.head)
 
-let drummerLocation: [(Float, Float, Float)] = [
+let maxNumberOfPlanes = 10
+let planeLocations: [(Float, Float, Float)] = [
     (x: 1.757_231_498_429_01, y: 1.911_673_694_896_59, z: -8.094_368_331_589_704),
     (x: -0.179_269_237_592_594_17, y: 1.549_268_306_906_908_4, z: -7.254_713_426_424_875),
     (x: -0.013_296_800_013_828_491, y: 2.147_766_026_068_617_8, z: -8.601_541_438_900_849),
@@ -33,26 +34,9 @@ let drummerLocation: [(Float, Float, Float)] = [
     (x: 0.473_470_811_107_753_46, y: 1.864_930_149_962_240_6, z: -8.164_641_191_459_626)
 ]
 
-enum BundleAssets {
-    static let plane = "Plane.usdz"
-    static let bullet = "DrumStick.usdz"
-    static let drummer = "Drummer.usdz"
-
-    @MainActor
-    static func loadEntity(asset: String) async -> Entity {
-        let entity = try! await Entity(named: asset, in: .realityKitContentBundle)
-        return entity
-    }
-}
 
 var drummers: [Entity] = .init()
 
-
-@MainActor
-func loadDrummers(numberOfDrummers: Int = 10) async {
-    let drummer = await BundleAssets.loadEntity(asset: BundleAssets.plane)
-    drummers = (0..<numberOfDrummers).map({ _ in drummer.clone(recursive: true)})
-}
 
 
 
