@@ -8,6 +8,7 @@
 import Foundation
 import Observation
 import RealityKit
+import ARKit
 
 
 @Observable
@@ -44,14 +45,14 @@ final class GameModelManager {
                 startTransform: .init(translation: .init([0, 1, 0])),
                 bindTarget: .transform,
                 repeatMode: .repeat,
-                delay: .random(in: 0..<2), 
+                delay: .random(in: 0..<0.5), 
                 speed: 0.5
             )
             planAnimationResources[plane.id] = try .generate(with: orbitAnimationCurve)
         }
 
         let shootAnimationDefintion = FromToByAnimation<Transform>(
-            by: .init(translation: .init(.zero, 8)),
+            by: .init(translation: .init(.zero, 20)),
             bindTarget: .transform
         )
         shootAnimationResource =  try .generate(with: shootAnimationDefintion)
@@ -63,7 +64,7 @@ final class GameModelManager {
             plane.parent?.transform.translation = .init(x: location.0, y: location.1, z: location.2 + 3)
         }
 
-        entities.gunParent.transform = .init(pitch: -.pi / 6, yaw: .pi)
+        entities.gunParent.transform = .init(pitch: -.pi / 12, yaw: .pi)
         entities.gunParent.position = .init(.zero, -1)
     }
 
@@ -76,5 +77,10 @@ final class GameModelManager {
 
     func shoot() {
         shootAnimationController = entities.gun.playAnimation(shootAnimationResource, transitionDuration: .zero, startsPaused: false)
+    }
+
+    func onShootAnimationCompleted(event: AnimationEvents.PlaybackCompleted) {
+        guard event.playbackController == shootAnimationController else { return }
+        entities.gun.transform = .identity
     }
 }

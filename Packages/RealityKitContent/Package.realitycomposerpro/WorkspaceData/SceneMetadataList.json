@@ -27,7 +27,8 @@
     "objectMetadataList" : [
       [
         "18D197B0-A281-4A4A-9FD5-9E1F8C5B3624",
-        "Plane"
+        "Plane",
+        "geom"
       ],
       {
         "isExpanded" : true,
@@ -35,8 +36,7 @@
       },
       [
         "18D197B0-A281-4A4A-9FD5-9E1F8C5B3624",
-        "Plane",
-        "geom"
+        "Plane"
       ],
       {
         "isExpanded" : true,
@@ -83,6 +83,15 @@
       [
         "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root",
+        "Sphere_Right"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root",
         "Sphere_Left"
       ],
       {
@@ -92,15 +101,6 @@
       [
         "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "AF09ED6F-1707-48FD-8720-65B998362C09",
-        "Root",
-        "Sphere_Right"
       ],
       {
         "isExpanded" : true,
@@ -154,6 +154,85 @@
         "Root",
         "GridMaterial",
         "GridMaterial"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "F467DF61-3B8C-408A-B929-5F148D26B6F1" : {
+    "objectMetadataList" : [
+      [
+        "F467DF61-3B8C-408A-B929-5F148D26B6F1",
+        "Root",
+        "Plane",
+        "geom",
+        "realistic"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "F467DF61-3B8C-408A-B929-5F148D26B6F1",
+        "Root",
+        "Plane",
+        "geom",
+        "realistic",
+        "materials"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "F467DF61-3B8C-408A-B929-5F148D26B6F1",
+        "Root",
+        "Plane",
+        "geom",
+        "realistic",
+        "geo"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "F467DF61-3B8C-408A-B929-5F148D26B6F1",
+        "Root",
+        "Plane",
+        "geom"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "F467DF61-3B8C-408A-B929-5F148D26B6F1",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "F467DF61-3B8C-408A-B929-5F148D26B6F1",
+        "Root",
+        "Plane",
+        "geom",
+        "realistic",
+        "geo",
+        "lod0"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "F467DF61-3B8C-408A-B929-5F148D26B6F1",
+        "Root",
+        "Plane"
       ],
       {
         "isExpanded" : true,

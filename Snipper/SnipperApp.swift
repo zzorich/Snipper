@@ -9,6 +9,12 @@ import SwiftUI
 
 @main
 struct SnipperApp: App {
+
+    init() {
+        CollisionSystem.registerSystem()
+        CollideComponent.registerComponent()
+    }
+
     let gameModel = GameModelManager()
     var body: some Scene {
         WindowGroup {

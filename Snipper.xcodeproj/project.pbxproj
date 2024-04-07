@@ -16,6 +16,7 @@
 		4F1758B02BAA9124008A34AE /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1758AF2BAA9124008A34AE /* GameModel.swift */; };
 		4F1758B22BAAB677008A34AE /* Entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1758B12BAAB677008A34AE /* Entities.swift */; };
 		4F34CDE72BAF9CA300B3DB73 /* HandGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F34CDE62BAF9CA300B3DB73 /* HandGesture.swift */; };
+		4F3DD5112BC1319900A93870 /* CollisionSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3DD5102BC1319900A93870 /* CollisionSystem.swift */; };
 		4F97E88B2BBFCC4B00BF3FBC /* GameModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F97E88A2BBFCC4B00BF3FBC /* GameModelManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		4F1758AF2BAA9124008A34AE /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		4F1758B12BAAB677008A34AE /* Entities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entities.swift; sourceTree = "<group>"; };
 		4F34CDE62BAF9CA300B3DB73 /* HandGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandGesture.swift; sourceTree = "<group>"; };
+		4F3DD5102BC1319900A93870 /* CollisionSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionSystem.swift; sourceTree = "<group>"; };
 		4F97E88A2BBFCC4B00BF3FBC /* GameModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModelManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,6 +78,7 @@
 				4F1758B12BAAB677008A34AE /* Entities.swift */,
 				4F34CDE62BAF9CA300B3DB73 /* HandGesture.swift */,
 				4F97E88A2BBFCC4B00BF3FBC /* GameModelManager.swift */,
+				4F3DD5102BC1319900A93870 /* CollisionSystem.swift */,
 			);
 			path = Snipper;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F1758B22BAAB677008A34AE /* Entities.swift in Sources */,
+				4F3DD5112BC1319900A93870 /* CollisionSystem.swift in Sources */,
 				4F1758A12BAA8F52008A34AE /* ContentView.swift in Sources */,
 				4F1758B02BAA9124008A34AE /* GameModel.swift in Sources */,
 				4F17589F2BAA8F52008A34AE /* SnipperApp.swift in Sources */,

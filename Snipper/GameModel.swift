@@ -26,6 +26,8 @@ struct GameEntities {
         async let _plane = loadEntity(named: .plane)
 
         let (gun, plane) = try await (_gun, _plane)
+        gun.name = "gun"
+        plane.name = "plane"
         gunParent = Entity()
         gunParent.addChild(gun)
         self.gun = gun

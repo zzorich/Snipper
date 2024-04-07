@@ -9,12 +9,6 @@ import Foundation
 import RealityKit
 import class Foundation.Bundle
 
-
-let space = Entity()
-
-// hand anchor used to track user hand location
-let cameraAnchor = AnchorEntity(.head)
-
 let maxNumberOfPlanes = 10
 let planeLocations: [(Float, Float, Float)] = [
     (x: 1.757_231_498_429_01, y: 1.911_673_694_896_59, z: -8.094_368_331_589_704),
@@ -34,8 +28,6 @@ let planeLocations: [(Float, Float, Float)] = [
     (x: 0.473_470_811_107_753_46, y: 1.864_930_149_962_240_6, z: -8.164_641_191_459_626)
 ]
 
-
-var drummers: [Entity] = .init()
 
 
 
